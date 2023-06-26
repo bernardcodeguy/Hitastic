@@ -1,0 +1,66 @@
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+#reg-container{
+	width: 50%;
+	margin-top: 200px;
+}
+
+
+
+.contain p{
+	display: inline
+}
+
+
+
+
+.tabs .indicator {
+    background-color:#80cbc4;
+}
+
+
+
+
+
+  main {
+    flex: 1 0 auto;
+  }
+  
+  
+p{
+	font-family: 'Lora', serif;
+
+}
+
+.c-row {
+  display: flex;
+}
+
+.c-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.c-card {
+  flex: 1;
+}
+
+
+ @media screen and (max-width: 768px) {
+  .c-row {
+    display: block;
+  }
+ }
+ 
+ 
+ #toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 20%;
+  left:14%;  
+}
+

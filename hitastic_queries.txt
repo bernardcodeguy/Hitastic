@@ -1,0 +1,98 @@
+CREATE DATABASE hitastic;
+
+
+
+
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT NULL,
+  `fname` varchar(50) DEFAULT NULL,
+  `lname` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `passwd` varchar(100) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `img` mediumblob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+CREATE TABLE `music` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `artist` varchar(50) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `img` mediumblob DEFAULT (NULL),
+  `duration` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `cart` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userid` int DEFAULT NULL,
+  `musicid` int DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `artist` varchar(50) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`),
+  KEY `musicid` (`musicid`),
+  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`musicid`) REFERENCES `music` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+
+
+CREATE TABLE `orders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userid` int DEFAULT NULL,
+  `musicid` int DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `artist` varchar(50) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `time_order` timestamp NULL DEFAULT (now()),
+  `is_delivered` smallint DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `userid` (`userid`),
+  KEY `musicid` (`musicid`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`musicid`) REFERENCES `music` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `order_history` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userid` int DEFAULT NULL,
+  `musicid` int DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `artist` varchar(50) DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `time_order` timestamp NULL DEFAULT (now()),
+  `is_delivered` smallint DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+INSERT INTO users(username,fname,lname,email,passwd,gender) VALUES('user0001','Test','User','test@gmail.com','1234','M');
+
+INSERT INTO music(title,artist,price,duration) VALUES('Not Over Yet','KSI ft Tom Grennan',5.00,'30 minutes');
+
+INSERT INTO music(title,artist,price,duration) VALUES('Doja','Central Cee',5.00,'2 minutes');
+
+INSERT INTO music(title,artist,price,duration) VALUES('Bad and Boujee','Migos feat. Lil Uzi Vert',15.00,'3 minutes');
+
+INSERT INTO music(title,artist,price,duration) VALUES('Time After Time','Cyndi Lauper',10.00,' 4 minutes');
+
+INSERT INTO music(title,artist,price,duration) VALUES('Goodbye Earl','Dixie Chicks',15.00,'3 minutes');
+
+INSERT INTO music(title,artist,price,duration) VALUES('Summertime Sadness','Lana Del Rey',10.00,'3 minutes);
+
+INSERT INTO music(title,artist,price,duration) VALUES('Adonai','Sarkodie ft Castro',5.00,'2 minutes');
+
+INSERT INTO music(title,artist,price,duration) VALUES('African Girls','Dee Money',15.00,'2 minutes');
